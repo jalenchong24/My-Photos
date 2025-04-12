@@ -1,0 +1,101 @@
+/* style.css - UPDATED for smaller, staggered photos */
+
+body {
+    background-color: #f0f0f0; /* Light grey background - change if you like */
+    margin: 0;
+    /* Add some horizontal padding on the body itself */
+    padding: 20px 5%; /* Adjust the 5% padding if needed */
+    font-family: sans-serif; /* Basic font */
+}
+
+h1 {
+    text-align: center; /* Center the main heading */
+    margin-bottom: 50px;
+}
+
+.photo-container {
+    /* === Makes Photos Smaller === */
+    /* Set a max-width for the container. The image inside will be limited by this. */
+    /* Adjust 50% to make photos larger or smaller. You could also use pixels like max-width: 450px; */
+    max-width: 50%;
+
+    /* === Vertical Spacing === */
+    /* Keep the large space between containers. Adjust 70vh as desired. */
+    margin-bottom: 70vh;
+
+    /* === Positioning (Staggering) === */
+    /* Default margins - these will be mostly overridden by the odd/even rules below */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Ensure smooth transition if container size changes */
+    transition: margin 0.3s ease;
+}
+
+/* Style ODD numbered photo containers (1st, 3rd, 5th, 7th) */
+.photo-container:nth-of-type(odd) {
+    margin-left: 10%;   /* Push OFF the left edge (adjust 10%) */
+    margin-right: auto; /* Let the right margin be automatic (aligns left) */
+}
+
+/* Style EVEN numbered photo containers (2nd, 4th, 6th) */
+.photo-container:nth-of-type(even) {
+    margin-right: 10%;  /* Push OFF the right edge (adjust 10%) */
+    margin-left: auto;  /* Let the left margin be automatic (aligns right) */
+}
+
+/* Style the image within the container */
+.photo-container img {
+    display: block; /* Removes extra space below image */
+    /* Image should fill its container (which is now smaller) */
+    max-width: 100%;
+    height: auto; /* Maintains aspect ratio */
+    border: 1px solid #ccc; /* Optional light grey border */
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2); /* Optional subtle shadow */
+}
+
+/* Adjust margin for the very last photo container */
+.photo-container:last-of-type {
+    margin-bottom: 20vh; /* Adjust as needed */
+}
+
+/* --- Play/Pause Button Style (No changes needed here) --- */
+#play-pause-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Keep on top */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+#play-pause-button:hover {
+    opacity: 1.0;
+}
+
+/* --- Media Query for Smaller Screens (Optional but Recommended) --- */
+/* On screens smaller than 768px, make photos wider and center them */
+@media (max-width: 768px) {
+    .photo-container {
+        max-width: 85%; /* Use more width on small screens */
+        margin-left: auto !important;  /* Center align */
+        margin-right: auto !important; /* Center align */
+    }
+
+    .photo-container:nth-of-type(odd),
+    .photo-container:nth-of-type(even) {
+        margin-left: auto;  /* Override the staggering */
+        margin-right: auto; /* Override the staggering */
+    }
+
+    body {
+        padding: 15px 3%; /* Reduce padding slightly */
+    }
+}
